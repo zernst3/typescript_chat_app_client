@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const InfoBar: React.FC<any> = ({ chatRoom }) => (
   <div id="infoBar">
@@ -6,7 +7,7 @@ const InfoBar: React.FC<any> = ({ chatRoom }) => (
       <h3>Chat Room: {chatRoom}</h3>
     </div>
     <div className="rightInnerContainer">
-      <a href="/">Close</a>
+      <Link to="/">Close</Link>
     </div>
   </div>
 );

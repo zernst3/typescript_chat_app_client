@@ -3,6 +3,7 @@ import { Socket } from "socket.io-client";
 import Axios from "axios";
 import { RouteComponentProps } from "react-router-dom";
 import InfoBar from "../InfoBar/InfoBar";
+import Input from "../Input/Input";
 
 const io = require("socket.io-client");
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
@@ -10,12 +11,12 @@ const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
 interface Message {
   user: string;
   text: string;
+  language: string;
 }
 
 let socket: Socket;
 
-const Chat: React.FC<RouteComponentProps> = (props: any) => {
-  const { name, chatRoom, language } = props.location.state;
+const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   const [messages, setMessages] = useState<Array<Message>>([]);
   const [message, setMessage] = useState<string>("");
 
@@ -35,7 +36,8 @@ const Chat: React.FC<RouteComponentProps> = (props: any) => {
 
     // unmounting
     return () => {
-      socket.emit("disconnect");
+      socket.emit("disconnectFromServer");
+      console.log("Disconnected from the server");
       socket.off();
     };
   }, [name, chatRoom, language]);
@@ -54,17 +56,15 @@ const Chat: React.FC<RouteComponentProps> = (props: any) => {
     }
   };
 
-  console.log(message, messages);
-
   return (
     <div className="chatOuterContainer">
       <h1>Chat</h1>
       <div className="innerContainer">
         <InfoBar chatRoom={chatRoom} />
-        <input
-          value={message}
-          onChange={(evt) => setMessage(evt.target.value)}
-          onKeyPress={(evt) => (evt.key === "Enter" ? sendMessage(evt) : null)}
+        <Input
+          message={message}
+          setMessage={setMessage}
+          sendMessage={sendMessage}
         />
       </div>
     </div>

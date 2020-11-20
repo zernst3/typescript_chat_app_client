@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 
-const Login: React.FC = () => {
-  const [name, setName] = useState<string>("");
-  const [chatRoom, setChatRoom] = useState<string>("");
-  const [language, setLanguage] = useState<string>("English");
-
+const Login: React.FC<any> = ({ setName, setChatRoom, setLanguage }) => {
   return (
     <div id="loginOuterContainer">
       <div id="loginInnerContainer">
@@ -40,10 +36,7 @@ const Login: React.FC = () => {
             <option value="Spanish">Spanish</option>
           </select>
         </div>
-        <Link
-          onClick={(evt) => (!name || !chatRoom ? evt.preventDefault() : null)}
-          to={{ pathname: `/chat`, state: { name, chatRoom, language } }}
-        >
+        <Link to="/chat">
           <button>Join</button>
         </Link>
       </div>
