@@ -1,0 +1,14 @@
+#users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgb(167, 136, 167);
+  border-radius: 25px;
+  height: 95%;
+  min-width: 10%;
+  max-width: 30%;
+  margin-right: 5px;
+  margin-left: 5px;
+  text-align: center;
+  overflow: auto;
+}

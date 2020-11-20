@@ -4,7 +4,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import { MessageInterface } from "../Chat/Chat";
 import "./Messages.css";
 
-const Messages: React.FC<any> = ({ messages, name }) => (
+const Messages: React.FC<any> = ({ messages, name, users }) => (
   <ScrollToBottom className="messages">
     {messages.map((message: MessageInterface, idx: number) => (
       <div key={idx}>

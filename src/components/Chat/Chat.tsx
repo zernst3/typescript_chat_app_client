@@ -4,6 +4,7 @@ import { Socket } from "socket.io-client";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
+import Users from "../Users/Users";
 import "./Chat.css";
 
 const io = require("socket.io-client");
@@ -20,6 +21,7 @@ let socket: Socket;
 const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   const [messages, setMessages] = useState<Array<MessageInterface>>([]);
   const [message, setMessage] = useState<string>("");
+  const [users, setUsers] = useState<Array<string>>([]);
 
   useEffect(() => {
     socket = io(ENDPOINT, {
@@ -33,7 +35,9 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
       console.log(`I am now connected to the server with id: ${socket.id}`);
     });
 
-    socket.emit("login", { name, chatRoom, language }, () => {});
+    socket.emit("login", { name, chatRoom, language }, (error: any) => {
+      console.log("There has been a server error");
+    });
 
     // unmounting
     return () => {
@@ -49,6 +53,18 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
     });
   }, [messages]);
 
+  useEffect(() => {
+    socket.on("userJoin", (usersFromServer: Array<string>) => {
+      setUsers([...users, ...usersFromServer]);
+    });
+  }, [users]);
+
+  useEffect(() => {
+    socket.on("userLeave", (usersFromServer: Array<string>) => {
+      setUsers(usersFromServer);
+    });
+  }, [users]);
+
   const sendMessage = (evt: React.KeyboardEvent<HTMLInputElement>) => {
     evt.preventDefault();
 
@@ -59,6 +75,7 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
 
   return name && chatRoom ? (
     <div id="chatOuterContainer">
+      <Users users={users} />
       <div id="chatInnerContainer">
         <InfoBar chatRoom={chatRoom} />
         <Messages messages={messages} name={name} />

@@ -1,4 +1,5 @@
 import React from "react";
+import ReactEmoji from "react-emoji";
 import "./Message.css";
 
 const Message: React.FC<any> = ({
@@ -15,7 +16,7 @@ const Message: React.FC<any> = ({
     <div className="messageOuterContainer">
       <div className="messageContainer currentUser">
         <div className="messageBox">
-          <p className="messageText">{text}</p>
+          <p className="messageText">{ReactEmoji.emojify(text)}</p>
         </div>
         <p className="sentText">
           {name} ({language})
@@ -26,7 +27,7 @@ const Message: React.FC<any> = ({
     <div className="messageOuterContainer">
       <div className="messageContainer otherUser">
         <div className="messageBox">
-          <p className="messageText">{text}</p>
+          <p className="messageText">{ReactEmoji.emojify(text)}</p>
         </div>
         <p className="sentText">
           {user} ({language})
