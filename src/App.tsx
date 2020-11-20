@@ -19,6 +19,9 @@ const App = () => {
             setName={setName}
             setChatRoom={setChatRoom}
             setLanguage={setLanguage}
+            name={name}
+            chatRoom={chatRoom}
+            language={language}
           />
         )}
       />

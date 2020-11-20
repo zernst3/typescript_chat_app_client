@@ -1,26 +1,38 @@
-import React, { useState } from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Login.css";
 
-const Login: React.FC<any> = ({ setName, setChatRoom, setLanguage }) => {
+const Login: React.FC<any> = ({
+  setName,
+  setChatRoom,
+  setLanguage,
+  name,
+  chatRoom,
+}) => {
   return (
     <div id="loginOuterContainer">
       <div id="loginInnerContainer">
-        <h1 className="title">Join the chatroom</h1>
+        <h1 className="title">
+          <img
+            src="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/1024/messages_5122x.png"
+            alt="Join the Chatroom"
+          />{" "}
+        </h1>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Input Your Name:</label>
           <input
+            defaultValue={name}
             name="name"
-            placeholder=""
             className="input"
             type="text"
             onChange={(evt) => setName(evt.target.value)}
           />
         </div>
         <div>
-          <label htmlFor="chatRoom">Chat Room:</label>
+          <label htmlFor="chatRoom">Input Chat Room Name:</label>
           <input
+            defaultValue={chatRoom}
             name="chatRoom"
-            placeholder=""
             className="input"
             type="text"
             onChange={(evt) => setChatRoom(evt.target.value)}
@@ -36,8 +48,9 @@ const Login: React.FC<any> = ({ setName, setChatRoom, setLanguage }) => {
             <option value="Spanish">Spanish</option>
           </select>
         </div>
+
         <Link to="/chat">
-          <button>Join</button>
+          <button disabled={!name || !chatRoom}>Join</button>
         </Link>
       </div>
     </div>

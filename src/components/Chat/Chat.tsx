@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import { Socket } from "socket.io-client";
-import Axios from "axios";
-import { RouteComponentProps } from "react-router-dom";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
+import Messages from "../Messages/Messages";
+import "./Chat.css";
 
 const io = require("socket.io-client");
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
 
-interface Message {
+export interface MessageInterface {
   user: string;
   text: string;
   language: string;
@@ -17,7 +18,7 @@ interface Message {
 let socket: Socket;
 
 const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
-  const [messages, setMessages] = useState<Array<Message>>([]);
+  const [messages, setMessages] = useState<Array<MessageInterface>>([]);
   const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   }, [name, chatRoom, language]);
 
   useEffect(() => {
-    socket.on("message", (message: Message) => {
+    socket.on("message", (message: MessageInterface) => {
       setMessages([...messages, message]);
     });
   }, [messages]);
@@ -56,11 +57,11 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
     }
   };
 
-  return (
-    <div className="chatOuterContainer">
-      <h1>Chat</h1>
-      <div className="innerContainer">
+  return name && chatRoom ? (
+    <div id="chatOuterContainer">
+      <div id="chatInnerContainer">
         <InfoBar chatRoom={chatRoom} />
+        <Messages messages={messages} name={name} />
         <Input
           message={message}
           setMessage={setMessage}
@@ -68,6 +69,8 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
         />
       </div>
     </div>
+  ) : (
+    <Redirect to="/" />
   );
 };
 

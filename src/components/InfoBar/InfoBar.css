@@ -1,0 +1,24 @@
+#infoBar {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#infoBar h1 {
+  color: rgb(231, 231, 231);
+}
+
+#infoBar a {
+  text-decoration: none;
+  color: rgb(231, 231, 231);
+  font-size: 1.4em;
+  padding: 5px 15px;
+  background-color: rgba(19, 0, 37, 0.315);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  transition: 0.2s; /* Animation */
+}
+
+#infoBar a:hover {
+  cursor: pointer;
+  background-color: rgba(19, 0, 37, 0.76);
+}

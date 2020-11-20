@@ -1,0 +1,40 @@
+.messages {
+  margin: 10px;
+  padding: 5px;
+  min-width: 60%;
+  max-width: 95%;
+  overflow: auto;
+  flex: auto;
+  background-color: rgb(204, 188, 241);
+  border-radius: 10px;
+}
+
+/* width */
+.messages ::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+.messages ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+.messages ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.messages ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.messages button {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0.4);
+}

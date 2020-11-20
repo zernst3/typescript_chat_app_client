@@ -1,0 +1,48 @@
+.messageOuterContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.messageContainer {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  width: 80%;
+}
+
+.messageContainer > p {
+  color: rgb(82, 82, 82);
+  margin: 0px;
+  margin-left: 8px;
+}
+
+.currentUser {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+.otherUser {
+  justify-content: flex-start;
+}
+
+.messageBox {
+  margin: 2px 0px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.messageBox p {
+  max-width: 400px;
+  overflow-wrap: break-word;
+  margin: 5px 3px;
+}
+
+.currentUser .messageBox {
+  background-color: rgb(193, 204, 235);
+}
+
+.otherUser .messageBox {
+  background-color: rgb(231, 231, 231);
+}
