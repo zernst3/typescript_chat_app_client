@@ -35,9 +35,7 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
       console.log(`I am now connected to the server with id: ${socket.id}`);
     });
 
-    socket.emit("login", { name, chatRoom, language }, (error: any) => {
-      console.log("There has been a server error");
-    });
+    socket.emit("login", { name, chatRoom, language }, () => {});
 
     // unmounting
     return () => {

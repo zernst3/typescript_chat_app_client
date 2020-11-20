@@ -12,3 +12,7 @@
   text-align: center;
   overflow: auto;
 }
+
+#users h2 {
+  margin: 25px 5px;
+}
