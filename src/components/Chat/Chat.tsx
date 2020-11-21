@@ -12,11 +12,11 @@ const { v4: uuidv4 } = require("uuid");
 
 const io = require("socket.io-client");
 
-let AZURESUBSCRIPTIONKEY = process.env.AZURESUBSCRIPTIONKEY || undefined;
-let AZUREENDPOINT = process.env.AZUREENDPOINT || undefined;
-let LOCATION = process.env.LOCATION || undefined;
+let AZURESUBSCRIPTIONKEY = process.REACT_APP_AZURESUBSCRIPTIONKEY || undefined;
+let AZUREENDPOINT = process.REACT_APP_AZUREENDPOINT || undefined;
+let LOCATION = process.REACT_APP_LOCATION || undefined;
 
-const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
+const ENDPOINT = process.REACT_APP_ENDPOINT || "localhost:8080";
 
 console.log(process);
 
