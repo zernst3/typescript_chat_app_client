@@ -16,13 +16,9 @@ let AZURESUBSCRIPTIONKEY = process.env.AZURESUBSCRIPTIONKEY || undefined;
 let AZUREENDPOINT = process.env.AZUREENDPOINT || undefined;
 let LOCATION = process.env.LOCATION || undefined;
 
-if (process.env.NODE_ENV === "development") {
-  AZURESUBSCRIPTIONKEY = require("../../secrets").AZURESUBSCRIPTIONKEY;
-  AZUREENDPOINT = require("../../secrets").AZUREENDPOINT;
-  LOCATION = require("../../secrets").LOCATION;
-}
-
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
+
+console.log(process.env);
 
 export interface MessageInterface {
   user: string;
