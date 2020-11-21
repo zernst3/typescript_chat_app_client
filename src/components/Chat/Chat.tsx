@@ -18,7 +18,7 @@ let LOCATION = process.env.LOCATION || undefined;
 
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
 
-console.log(process.env);
+console.log(process);
 
 export interface MessageInterface {
   user: string;
@@ -90,9 +90,8 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
         }
       };
       if (
-        (language !== message.language && !AZURESUBSCRIPTIONKEY) ||
-        !AZUREENDPOINT ||
-        !LOCATION
+        language !== message.language &&
+        (!AZURESUBSCRIPTIONKEY || !AZUREENDPOINT || !LOCATION)
       ) {
         message.text = `(${Words[language]["translationUnavailableAtThisTime"]}) ${message.text}`;
         setMessages((messages) => [...messages, message]);
