@@ -11,6 +11,7 @@ const Words: { [index: string]: any } = {
     close: "Close",
     typeInAMessage: "Type in a message...",
     send: "Send",
+    translationUnavailableAtThisTime: "Translation unavailable at this time",
   },
   es: {
     language: "Español",
@@ -24,6 +25,8 @@ const Words: { [index: string]: any } = {
     close: "Cerrar",
     typeInAMessage: "Escribe un mensaje...",
     send: "Enviar",
+    translationUnavailableAtThisTime:
+      "Traducción no disponible en este momento",
   },
   ru: {
     language: "русский",
@@ -37,6 +40,7 @@ const Words: { [index: string]: any } = {
     close: "Закрыть",
     typeInAMessage: "Напишите сообщение ...",
     send: "Отправить",
+    translationUnavailableAtThisTime: "Перевод в настоящее время недоступен",
   },
   fr: {
     language: "Français",
@@ -50,6 +54,7 @@ const Words: { [index: string]: any } = {
     close: "Fermer",
     typeInAMessage: "Tapez un message ...",
     Envoyer: "Envoyer",
+    translationUnavailableAtThisTime: "Traduction indisponible pour le moment",
   },
   de: {
     language: "Deutsche",
@@ -63,6 +68,8 @@ const Words: { [index: string]: any } = {
     close: "Schließen",
     typeInAMessage: "Nachricht eingeben ...",
     send: "Senden",
+    translationUnavailableAtThisTime:
+      "Die Übersetzung ist derzeit nicht verfügbar",
   },
   it: {
     language: "Italiano",
@@ -76,6 +83,8 @@ const Words: { [index: string]: any } = {
     close: "Chiudi",
     typeInAMessage: "Digita un messaggio ...",
     send: "Invia",
+    translationUnavailableAtThisTime:
+      "Traduzione non disponibile in questo momento",
   },
   pt: {
     language: "Português",
@@ -89,6 +98,7 @@ const Words: { [index: string]: any } = {
     close: "Fechar",
     typeInAMessage: "Digite uma mensagem ...",
     send: "Enviar",
+    translationUnavailableAtThisTime: "Tradução indisponível no momento",
   },
   "zh-Hans": {
     language: "中文",
@@ -102,6 +112,7 @@ const Words: { [index: string]: any } = {
     close: "关闭",
     typeInAMessage: "输入消息...",
     send: "发送",
+    translationUnavailableAtThisTime: "目前无法翻译",
   },
   ja: {
     language: "英語",
@@ -115,6 +126,7 @@ const Words: { [index: string]: any } = {
     close: "閉じる",
     typeInAMessage: "メッセージを入力してください...",
     send: "送信",
+    translationUnavailableAtThisTime: "現在、翻訳はご利用いただけません",
   },
   hi: {
     language: "हिंदी",
@@ -128,6 +140,7 @@ const Words: { [index: string]: any } = {
     close: "बंद करे",
     typeInAMessage: "एक संदेश में टाइप करें ...",
     भेजsend: "भेजने",
+    translationUnavailableAtThisTime: "इस समय अनुवाद अनुपलब्ध है",
   },
 };
 

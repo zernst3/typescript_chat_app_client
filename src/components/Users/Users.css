@@ -18,5 +18,14 @@
 }
 
 #users p {
+  margin: 5px;
+  display: flex;
+  align-items: center;
   font-size: 1.2em;
+}
+
+#users img {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
 }

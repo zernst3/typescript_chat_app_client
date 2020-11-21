@@ -6,20 +6,25 @@ import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
 import Users from "../Users/Users";
+import Words from "../translation";
 import "./Chat.css";
 const { v4: uuidv4 } = require("uuid");
 
 const io = require("socket.io-client");
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
 
-const azuresubscriptionKey =
+const azureSubscriptionKey =
   process.env.AZURESUBSCRIPTIONKEY ||
-  require("../../secrets").azuresubscriptionKey;
+  require("../../secrets").azureSubscriptionKey ||
+  undefined;
 
-const azureendpoint =
-  process.env.AZUREENDPOINT || require("../../secrets").azureendpoint;
+const azureEndPoint =
+  process.env.AZUREENDPOINT ||
+  require("../../secrets").azureEndPoint ||
+  undefined;
 
-const location = process.env.LOCATION || require("../../secrets").location;
+const location =
+  process.env.LOCATION || require("../../secrets").location || undefined;
 
 export interface MessageInterface {
   user: string;
@@ -62,11 +67,11 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
       const getTranslatedText = async () => {
         try {
           const res = await Axios({
-            baseURL: azureendpoint,
+            baseURL: azureEndPoint,
             url: "/translate",
             method: "post",
             headers: {
-              "Ocp-Apim-Subscription-Key": azuresubscriptionKey,
+              "Ocp-Apim-Subscription-Key": azureSubscriptionKey,
               "Ocp-Apim-Subscription-Region": location,
               "Content-type": "application/json",
               "X-ClientTraceId": uuidv4().toString(),
@@ -86,18 +91,17 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
           const originalText: string = message.text;
           message.text = res.data[0]["translations"][0]["text"];
           console.log(`${originalText} => ${message.text}`);
-          console.log(count);
-          count++;
           setMessages((messages) => [...messages, message]);
         } catch (err) {
           console.log(err);
         }
       };
-      if (language !== message.language) {
+      if (language !== message.language && !azureSubscriptionKey) {
+        message.text = `(${Words[language]["translationUnavailableAtThisTime"]}) ${message.text}`;
+        setMessages((messages) => [...messages, message]);
+      } else if (language !== message.language) {
         getTranslatedText();
       } else {
-        console.log(count);
-        count++;
         setMessages((messages) => [...messages, message]);
       }
     });
