@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import Fade from "react-reveal/Fade";
+import Words from "../translation";
 import "./Input.css";
 
-const Input: React.FC<any> = ({ message, setMessage, sendMessage }) => {
+const Input: React.FC<any> = ({
+  message,
+  setMessage,
+  sendMessage,
+  language,
+}) => {
   const [isEmoji, setIsEmoji] = useState<boolean>(false);
 
   const onEmojiClick = (evt: any, emojiObject: any) => {
@@ -29,7 +35,7 @@ const Input: React.FC<any> = ({ message, setMessage, sendMessage }) => {
           onClick={(evt) => emojiClick(evt)}
           rows={4}
           value={message}
-          placeholder="Type in a message..."
+          placeholder={Words[language].typeInAMessage}
           onChange={(evt) => setMessage(evt.target.value)}
           onKeyPress={(evt) => (evt.key === "Enter" ? sendMessage(evt) : null)}
         ></textarea>
@@ -39,7 +45,7 @@ const Input: React.FC<any> = ({ message, setMessage, sendMessage }) => {
           disabled={!message}
           onClick={(evt) => sendMessage(evt)}
         >
-          Send
+          {Words[language].send}
         </button>
       </form>
     </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Words from "../translation";
 import "./Login.css";
 
 const Login: React.FC<any> = ({
@@ -8,6 +9,7 @@ const Login: React.FC<any> = ({
   setLanguage,
   name,
   chatRoom,
+  language,
 }) => {
   return (
     <div id="loginOuterContainer">
@@ -16,10 +18,10 @@ const Login: React.FC<any> = ({
           <img
             src="https://cdn2.iconfinder.com/data/icons/ios7-inspired-mac-icon-set/1024/messages_5122x.png"
             alt="Join the Chatroom"
-          />{" "}
+          />
         </h1>
         <div>
-          <label htmlFor="name">Input Your Name:</label>
+          <label htmlFor="name">{Words[language].inputYourName}</label>
           <input
             defaultValue={name}
             name="name"
@@ -29,7 +31,7 @@ const Login: React.FC<any> = ({
           />
         </div>
         <div>
-          <label htmlFor="chatRoom">Input Chat Room Name:</label>
+          <label htmlFor="chatRoom">{Words[language].inputChatRoomName}</label>
           <input
             defaultValue={chatRoom}
             name="chatRoom"
@@ -39,18 +41,24 @@ const Login: React.FC<any> = ({
           />
         </div>
         <div>
-          <label htmlFor="language">Select Language:</label>
+          <label htmlFor="language">{Words[language].selectLanguage}</label>
           <select
             name="language"
             onChange={(evt) => setLanguage(evt.target.value)}
           >
-            <option value="English">English</option>
-            <option value="Spanish">Spanish</option>
+            <option value={language}>
+              {Words[language].currentLanguage}: {Words[language].language}
+            </option>
+            {Object.keys(Words).map((language, idx) => (
+              <option key={idx} value={language}>
+                {Words[language].language}
+              </option>
+            ))}
           </select>
         </div>
 
         <Link to="/chat">
-          <button disabled={!name || !chatRoom}>Join</button>
+          <button disabled={!name || !chatRoom}>{Words[language].join}</button>
         </Link>
       </div>
     </div>

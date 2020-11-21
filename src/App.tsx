@@ -7,7 +7,7 @@ import Login from "./components/Login/Login";
 const App = () => {
   const [name, setName] = useState<string>("");
   const [chatRoom, setChatRoom] = useState<string>("");
-  const [language, setLanguage] = useState<string>("English");
+  const [language, setLanguage] = useState<string>("en");
 
   return (
     <Router>

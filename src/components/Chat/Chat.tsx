@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Socket } from "socket.io-client";
+import Axios from "axios";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
 import Users from "../Users/Users";
+import { azuresubscriptionKey, azureendpoint, location } from "../../secrets";
 import "./Chat.css";
+const { v4: uuidv4 } = require("uuid");
 
 const io = require("socket.io-client");
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
@@ -17,6 +20,7 @@ export interface MessageInterface {
 }
 
 let socket: Socket;
+let count = 0;
 
 const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   const [messages, setMessages] = useState<Array<MessageInterface>>([]);
@@ -47,21 +51,52 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
 
   useEffect(() => {
     socket.on("message", (message: MessageInterface) => {
-      setMessages([...messages, message]);
-    });
-  }, [messages]);
+      const getTranslatedText = async () => {
+        try {
+          const res = await Axios({
+            baseURL: azureendpoint,
+            url: "/translate",
+            method: "post",
+            headers: {
+              "Ocp-Apim-Subscription-Key": azuresubscriptionKey,
+              "Ocp-Apim-Subscription-Region": location,
+              "Content-type": "application/json",
+              "X-ClientTraceId": uuidv4().toString(),
+            },
+            params: {
+              "api-version": "3.0",
+              from: message.language,
+              to: language,
+            },
+            data: [
+              {
+                text: message.text,
+              },
+            ],
+            responseType: "json",
+          });
 
-  useEffect(() => {
-    socket.on("userJoin", (usersFromServer: Array<string>) => {
-      setUsers([...users, ...usersFromServer]);
+          message.text = res.data[0]["translations"][0]["text"];
+          console.log(count);
+          count++;
+          setMessages([...messages, message]);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      if (language !== message.language) {
+        getTranslatedText();
+      } else {
+        console.log(count);
+        count++;
+        setMessages((messages) => [...messages, message]);
+      }
     });
-  }, [users]);
 
-  useEffect(() => {
-    socket.on("userLeave", (usersFromServer: Array<string>) => {
+    socket.on("userData", (usersFromServer: Array<string>) => {
       setUsers(usersFromServer);
     });
-  }, [users]);
+  }, []);
 
   const sendMessage = (evt: React.KeyboardEvent<HTMLInputElement>) => {
     evt.preventDefault();
@@ -73,14 +108,15 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
 
   return name && chatRoom ? (
     <div id="chatOuterContainer">
-      <Users users={users} />
+      <Users users={users} language={language} />
       <div id="chatInnerContainer">
-        <InfoBar chatRoom={chatRoom} />
+        <InfoBar chatRoom={chatRoom} language={language} />
         <Messages messages={messages} name={name} />
         <Input
           message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
+          language={language}
         />
       </div>
     </div>
