@@ -11,20 +11,18 @@ import "./Chat.css";
 const { v4: uuidv4 } = require("uuid");
 
 const io = require("socket.io-client");
+
+let AZURESUBSCRIPTIONKEY = process.env.AZURESUBSCRIPTIONKEY || undefined;
+let AZUREENDPOINT = process.env.AZUREENDPOINT || undefined;
+let LOCATION = process.env.LOCATION || undefined;
+
+if (process.env.NODE_ENV === "development") {
+  AZURESUBSCRIPTIONKEY = require("../../secrets").AZURESUBSCRIPTIONKEY;
+  AZUREENDPOINT = require("../../secrets").AZUREENDPOINT;
+  LOCATION = require("../../secrets").LOCATION;
+}
+
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
-
-const azureSubscriptionKey =
-  process.env.AZURESUBSCRIPTIONKEY ||
-  require("../../secrets").azureSubscriptionKey ||
-  undefined;
-
-const azureEndPoint =
-  process.env.AZUREENDPOINT ||
-  require("../../secrets").azureEndPoint ||
-  undefined;
-
-const location =
-  process.env.LOCATION || require("../../secrets").location || undefined;
 
 export interface MessageInterface {
   user: string;
@@ -33,7 +31,6 @@ export interface MessageInterface {
 }
 
 let socket: Socket;
-let count = 0;
 
 const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   const [messages, setMessages] = useState<Array<MessageInterface>>([]);
@@ -67,12 +64,12 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
       const getTranslatedText = async () => {
         try {
           const res = await Axios({
-            baseURL: azureEndPoint,
+            baseURL: AZUREENDPOINT,
             url: "/translate",
             method: "post",
             headers: {
-              "Ocp-Apim-Subscription-Key": azureSubscriptionKey,
-              "Ocp-Apim-Subscription-Region": location,
+              "Ocp-Apim-Subscription-Key": AZURESUBSCRIPTIONKEY,
+              "Ocp-Apim-Subscription-Region": LOCATION,
               "Content-type": "application/json",
               "X-ClientTraceId": uuidv4().toString(),
             },
@@ -96,7 +93,11 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
           console.log(err);
         }
       };
-      if (language !== message.language && !azureSubscriptionKey) {
+      if (
+        (language !== message.language && !AZURESUBSCRIPTIONKEY) ||
+        !AZUREENDPOINT ||
+        !LOCATION
+      ) {
         message.text = `(${Words[language]["translationUnavailableAtThisTime"]}) ${message.text}`;
         setMessages((messages) => [...messages, message]);
       } else if (language !== message.language) {

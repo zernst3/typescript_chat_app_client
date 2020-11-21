@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.9",
     "@types/react-router-dom": "^5.1.6",
     "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
     "emoji-picker-react": "^3.2.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -26,7 +27,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts  start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
