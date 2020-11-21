@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
+import Fade from "react-reveal/Fade";
 import "./Input.css";
 
 const Input: React.FC<any> = ({ message, setMessage, sendMessage }) => {
@@ -11,15 +12,21 @@ const Input: React.FC<any> = ({ message, setMessage, sendMessage }) => {
 
   const emojiClick = (evt: any) => {
     evt.preventDefault();
-    setIsEmoji(!isEmoji);
+    evt.target.name === "textarea" ? setIsEmoji(false) : setIsEmoji(!isEmoji);
   };
 
   return (
     <div id="input">
       <form>
-        {isEmoji && <EmojiPicker onEmojiClick={onEmojiClick} />}
+        {isEmoji && (
+          <Fade duration={500}>
+            <EmojiPicker onEmojiClick={onEmojiClick} />
+          </Fade>
+        )}
         <button onClick={(evt) => emojiClick(evt)}>😁</button>
         <textarea
+          name="textarea"
+          onClick={(evt) => emojiClick(evt)}
           rows={4}
           value={message}
           placeholder="Type in a message..."

@@ -16,3 +16,7 @@
 #users h2 {
   margin: 25px 5px;
 }
+
+#users p {
+  font-size: 1.2em;
+}

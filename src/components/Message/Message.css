@@ -28,6 +28,7 @@
 }
 
 .messageBox {
+  position: relative;
   margin: 2px 0px;
   padding: 5px;
   border-radius: 10px;
@@ -41,8 +42,9 @@
 
 .currentUser .messageBox {
   background-color: rgb(193, 204, 235);
+  box-shadow: 0 0 5px 0 #5e67aa;
 }
-
 .otherUser .messageBox {
   background-color: rgb(231, 231, 231);
+  box-shadow: 0 0 5px 0 #955ba3;
 }
