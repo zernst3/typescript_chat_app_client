@@ -6,12 +6,20 @@ import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
 import Users from "../Users/Users";
-import { azuresubscriptionKey, azureendpoint, location } from "../../secrets";
 import "./Chat.css";
 const { v4: uuidv4 } = require("uuid");
 
 const io = require("socket.io-client");
 const ENDPOINT = process.env.ENDPOINT || "localhost:8080";
+
+const azuresubscriptionKey =
+  process.env.AZURESUBSCRIPTIONKEY ||
+  require("../../secrets").azuresubscriptionKey;
+
+const azureendpoint =
+  process.env.AZUREENDPOINT || require("../../secrets").azureendpoint;
+
+const location = process.env.LOCATION || require("../../secrets").location;
 
 export interface MessageInterface {
   user: string;
@@ -75,11 +83,12 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
             ],
             responseType: "json",
           });
-
+          const originalText: string = message.text;
           message.text = res.data[0]["translations"][0]["text"];
+          console.log(`${originalText} => ${message.text}`);
           console.log(count);
           count++;
-          setMessages([...messages, message]);
+          setMessages((messages) => [...messages, message]);
         } catch (err) {
           console.log(err);
         }
