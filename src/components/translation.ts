@@ -13,6 +13,7 @@ const Words: { [index: string]: any } = {
     typeInAMessage: "Type in a message...",
     send: "Send",
     translationUnavailableAtThisTime: "Translation unavailable at this time",
+    return: "Return",
   },
   es: {
     showUsers: "Usuarios",
@@ -29,6 +30,7 @@ const Words: { [index: string]: any } = {
     send: "Enviar",
     translationUnavailableAtThisTime:
       "Traducción no disponible en este momento",
+    return: "Regreso",
   },
   ru: {
     showUsers: "Пользователи",
@@ -44,6 +46,7 @@ const Words: { [index: string]: any } = {
     typeInAMessage: "Напишите сообщение ...",
     send: "Отправить",
     translationUnavailableAtThisTime: "Перевод в настоящее время недоступен",
+    return: "Возвращение",
   },
   fr: {
     showUsers: "Utilisateurs",
@@ -51,14 +54,15 @@ const Words: { [index: string]: any } = {
     currentLanguage: "Langue actuelle",
     inputYourName: "Entrez votre nom",
     inputChatRoomName: "Entrez le nom de la salle de discussion",
-    selectLanguage: "Select Language",
+    selectLanguage: "Choisir la langue",
     join: "Rejoindre",
-    chatRoom: "Chat Room",
+    chatRoom: "Tchat",
     usersInChatRoom: "Utilisateurs dans la salle de chat",
     close: "Fermer",
     typeInAMessage: "Tapez un message ...",
     Envoyer: "Envoyer",
     translationUnavailableAtThisTime: "Traduction indisponible pour le moment",
+    return: "Revenir",
   },
   de: {
     showUsers: "Benutzer",
@@ -75,6 +79,7 @@ const Words: { [index: string]: any } = {
     send: "Senden",
     translationUnavailableAtThisTime:
       "Die Übersetzung ist derzeit nicht verfügbar",
+    return: "Rückkehr",
   },
   it: {
     showUsers: "Utenti",
@@ -91,6 +96,7 @@ const Words: { [index: string]: any } = {
     send: "Invia",
     translationUnavailableAtThisTime:
       "Traduzione non disponibile in questo momento",
+    return: "Ritorno",
   },
   pt: {
     showUsers: "Comercial",
@@ -106,6 +112,7 @@ const Words: { [index: string]: any } = {
     typeInAMessage: "Digite uma mensagem ...",
     send: "Enviar",
     translationUnavailableAtThisTime: "Tradução indisponível no momento",
+    return: "Retorna",
   },
   "zh-Hans": {
     showUsers: "用户数",
@@ -121,6 +128,7 @@ const Words: { [index: string]: any } = {
     typeInAMessage: "输入消息...",
     send: "发送",
     translationUnavailableAtThisTime: "目前无法翻译",
+    return: "回；返回",
   },
   ja: {
     showUsers: "ユーザー",
@@ -136,6 +144,7 @@ const Words: { [index: string]: any } = {
     typeInAMessage: "メッセージを入力してください...",
     send: "送信",
     translationUnavailableAtThisTime: "現在、翻訳はご利用いただけません",
+    return: "戻る",
   },
   hi: {
     showUsers: "उपयोगकर्ता",
@@ -151,6 +160,7 @@ const Words: { [index: string]: any } = {
     typeInAMessage: "एक संदेश में टाइप करें ...",
     भेजsend: "भेजने",
     translationUnavailableAtThisTime: "इस समय अनुवाद अनुपलब्ध है",
+    return: "वापसी",
   },
 };
 

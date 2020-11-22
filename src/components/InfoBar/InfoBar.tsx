@@ -14,14 +14,21 @@ const InfoBar: React.FC<any> = ({
       {Words[language].chatRoom}: {chatRoom}
     </h1>
     <div>
-      <button onClick={() => setShowUsers(!showUsers)}>
-        {Words[language].showUsers}
-      </button>
+      {showUsers && (
+        <button onClick={() => setShowUsers(!showUsers)}>
+          {Words[language].return}
+        </button>
+      )}
       {!showUsers && (
-        <Link to="/">
-          <p className="desktop">{Words[language].close}</p>
-          <p className="mobile">X</p>
-        </Link>
+        <React.Fragment>
+          <button onClick={() => setShowUsers(!showUsers)}>
+            {Words[language].showUsers}
+          </button>
+          <Link to="/">
+            <p className="desktop">{Words[language].close}</p>
+            <p className="mobile">X</p>
+          </Link>
+        </React.Fragment>
       )}
     </div>
   </div>
