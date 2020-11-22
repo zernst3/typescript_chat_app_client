@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import RenderLoader from "./components/RenderLoader/RenderLoader";
 
-import Chat from "./components/Chat/Chat";
-import Login from "./components/Login/Login";
+const Chat = lazy(() => import("./components/Chat/Chat"));
+const Login = lazy(() => import("./components/Login/Login"));
 
 const App = () => {
   const [name, setName] = useState<string>("");
@@ -10,28 +11,31 @@ const App = () => {
   const [language, setLanguage] = useState<string>("en");
 
   return (
-    <Router>
-      <Route
-        path="/"
-        exact
-        render={() => (
-          <Login
-            setName={setName}
-            setChatRoom={setChatRoom}
-            setLanguage={setLanguage}
-            name={name}
-            chatRoom={chatRoom}
-            language={language}
-          />
-        )}
-      />
-      <Route
-        path="/chat"
-        render={() => (
-          <Chat name={name} chatRoom={chatRoom} language={language} />
-        )}
-      />
-    </Router>
+    <Suspense fallback={RenderLoader("")}>
+      <Router>
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <Login
+              setName={setName}
+              setChatRoom={setChatRoom}
+              setLanguage={setLanguage}
+              name={name}
+              chatRoom={chatRoom}
+              language={language}
+            />
+          )}
+        />
+
+        <Route
+          path="/chat"
+          render={() => (
+            <Chat name={name} chatRoom={chatRoom} language={language} />
+          )}
+        />
+      </Router>
+    </Suspense>
   );
 };
 
