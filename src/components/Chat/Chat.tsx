@@ -32,12 +32,7 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   const [users, setUsers] = useState<Array<string>>([]);
 
   useEffect(() => {
-    socket = io(ENDPOINT, {
-      withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd",
-      },
-    });
+    socket = io(ENDPOINT);
 
     socket.on("connect", () => {
       console.log(`I am now connected to the server with id: ${socket.id}`);
