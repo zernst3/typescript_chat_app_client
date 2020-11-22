@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Socket } from "socket.io-client";
-import Axios from "axios";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import Messages from "../Messages/Messages";
@@ -9,7 +8,7 @@ import Users from "../Users/Users";
 import Words from "../translation";
 import "./Chat.css";
 import { getEndpoint } from "../../endpoint";
-const ENDPOINT: string = getEndpoint();
+const ENDPOINT: string = "https://zernst-typescript-chat-app-s.herokuapp.com/";
 
 const io = require("socket.io-client");
 
