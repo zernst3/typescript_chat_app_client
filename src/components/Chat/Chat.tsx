@@ -19,6 +19,12 @@ export interface MessageInterface {
   language: string;
 }
 
+interface TranslatedMessage {
+  originalText: string;
+  message: MessageInterface;
+  targetLanguage: string;
+}
+
 let socket: Socket;
 
 const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
@@ -50,32 +56,29 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
 
   useEffect(() => {
     socket.on("message", (message: MessageInterface) => {
-      const getTranslatedText = async (
-        sourceLanguage: string,
+      const getTranslatedText = (
         message: MessageInterface,
         targetLanguage: string
       ) => {
-        try {
-          const originalText: string = message.text;
-
-          const { data } = await Axios.post(`${ENDPOINT}/translate`, {
-            sourceLanguage,
-            originalText,
-            targetLanguage,
-          });
-
-          console.log(data);
-          message.text = data;
-          console.log(`${originalText} => ${message.text}`);
-          setMessages((messages) => [...messages, message]);
-        } catch (err) {
-          console.log(err);
-        }
+        socket.emit("translate", {
+          message,
+          targetLanguage,
+        });
       };
       if (language !== message.language) {
-        getTranslatedText(message.language, message, language);
+        getTranslatedText(message, language);
       } else {
         setMessages((messages) => [...messages, message]);
+      }
+    });
+
+    socket.on("translatedMessage", (translatedMessage: TranslatedMessage) => {
+      const { message, originalText, targetLanguage } = translatedMessage;
+      if (message.text === "translationUnavailable") {
+        message.text = `${Words[targetLanguage]["translationUnavailableAtThisTime"]} ${message.text}`;
+      } else {
+        setMessages((messages) => [...messages, message]);
+        console.log(`${originalText} => ${message.text}`);
       }
     });
 
