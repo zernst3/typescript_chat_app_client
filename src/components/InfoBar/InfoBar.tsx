@@ -17,10 +17,12 @@ const InfoBar: React.FC<any> = ({
       <button onClick={() => setShowUsers(!showUsers)}>
         {Words[language].showUsers}
       </button>
-      <Link to="/">
-        <p className="desktop">{Words[language].close}</p>
-        <p className="mobile">X</p>
-      </Link>
+      {!showUsers && (
+        <Link to="/">
+          <p className="desktop">{Words[language].close}</p>
+          <p className="mobile">X</p>
+        </Link>
+      )}
     </div>
   </div>
 );
