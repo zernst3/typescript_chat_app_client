@@ -3,12 +3,25 @@ import { Link } from "react-router-dom";
 import Words from "../translation";
 import "./InfoBar.css";
 
-const InfoBar: React.FC<any> = ({ chatRoom, language }) => (
+const InfoBar: React.FC<any> = ({
+  chatRoom,
+  language,
+  setShowUsers,
+  showUsers,
+}) => (
   <div id="infoBar">
     <h1>
       {Words[language].chatRoom}: {chatRoom}
     </h1>
-    <Link to="/">{Words[language].close}</Link>
+    <div>
+      <button onClick={() => setShowUsers(!showUsers)}>
+        {Words[language].showUsers}
+      </button>
+      <Link to="/">
+        <p className="desktop">{Words[language].close}</p>
+        <p className="mobile">X</p>
+      </Link>
+    </div>
   </div>
 );
 

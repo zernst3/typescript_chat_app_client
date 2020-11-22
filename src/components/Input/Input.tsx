@@ -18,36 +18,47 @@ const Input: React.FC<any> = ({
 
   const emojiClick = (evt: any) => {
     evt.preventDefault();
-    evt.target.name === "textarea" ? setIsEmoji(false) : setIsEmoji(!isEmoji);
+    evt.target.name === "textarea" || evt.target.name === "send"
+      ? setIsEmoji(false)
+      : setIsEmoji(!isEmoji);
   };
 
   return (
     <div id="input">
-      <form>
-        {isEmoji && (
-          <Fade duration={500}>
-            <EmojiPicker onEmojiClick={onEmojiClick} />
-          </Fade>
-        )}
-        <button onClick={(evt) => emojiClick(evt)}>😁</button>
-        <textarea
-          name="textarea"
-          onClick={(evt) => emojiClick(evt)}
-          rows={4}
-          value={message}
-          placeholder={Words[language].typeInAMessage}
-          onChange={(evt) => setMessage(evt.target.value)}
-          onKeyPress={(evt) => (evt.key === "Enter" ? sendMessage(evt) : null)}
-        ></textarea>
-
-        <button
-          className="sendMessageButton"
-          disabled={!message}
-          onClick={(evt) => sendMessage(evt)}
-        >
-          {Words[language].send}
-        </button>
-      </form>
+      {isEmoji && (
+        <Fade duration={500}>
+          <EmojiPicker onEmojiClick={onEmojiClick} />
+        </Fade>
+      )}
+      <Fade duration={500}>
+        <form>
+          <textarea
+            name="textarea"
+            onClick={(evt) => emojiClick(evt)}
+            rows={2}
+            value={message}
+            placeholder={Words[language].typeInAMessage}
+            onChange={(evt) => setMessage(evt.target.value)}
+            onKeyPress={(evt) =>
+              evt.key === "Enter" ? sendMessage(evt) : null
+            }
+          ></textarea>
+          <div>
+            <button onClick={(evt) => emojiClick(evt)}>😁</button>
+            <button
+              name="send"
+              className="sendMessageButton"
+              disabled={!message}
+              onClick={(evt) => {
+                emojiClick(evt);
+                sendMessage(evt);
+              }}
+            >
+              {Words[language].send}
+            </button>
+          </div>
+        </form>
+      </Fade>
     </div>
   );
 };

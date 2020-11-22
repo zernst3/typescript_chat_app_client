@@ -1,5 +1,6 @@
 const Words: { [index: string]: any } = {
   en: {
+    showUsers: "Users",
     language: "English",
     currentLanguage: "Current Language",
     inputYourName: "Input Your Name",
@@ -14,6 +15,7 @@ const Words: { [index: string]: any } = {
     translationUnavailableAtThisTime: "Translation unavailable at this time",
   },
   es: {
+    showUsers: "Usuarios",
     language: "Español",
     currentLanguage: "Idioma actual",
     inputYourName: "Ingrese su nombre",
@@ -29,6 +31,7 @@ const Words: { [index: string]: any } = {
       "Traducción no disponible en este momento",
   },
   ru: {
+    showUsers: "Пользователи",
     language: "русский",
     currentLanguage: "Текущий язык",
     inputYourName: "Введите свое имя",
@@ -43,6 +46,7 @@ const Words: { [index: string]: any } = {
     translationUnavailableAtThisTime: "Перевод в настоящее время недоступен",
   },
   fr: {
+    showUsers: "Utilisateurs",
     language: "Français",
     currentLanguage: "Langue actuelle",
     inputYourName: "Entrez votre nom",
@@ -57,6 +61,7 @@ const Words: { [index: string]: any } = {
     translationUnavailableAtThisTime: "Traduction indisponible pour le moment",
   },
   de: {
+    showUsers: "Benutzer",
     language: "Deutsche",
     currentLanguage: "Current Language",
     inputYourName: "Geben Sie Ihren Namen ein",
@@ -72,6 +77,7 @@ const Words: { [index: string]: any } = {
       "Die Übersetzung ist derzeit nicht verfügbar",
   },
   it: {
+    showUsers: "Utenti",
     language: "Italiano",
     currentLanguage: "Lingua corrente",
     inputYourName: "Inserisci il tuo nome",
@@ -87,6 +93,7 @@ const Words: { [index: string]: any } = {
       "Traduzione non disponibile in questo momento",
   },
   pt: {
+    showUsers: "Comercial",
     language: "Português",
     currentLanguage: "Idioma atual",
     inputYourName: "Input Your Name",
@@ -101,6 +108,7 @@ const Words: { [index: string]: any } = {
     translationUnavailableAtThisTime: "Tradução indisponível no momento",
   },
   "zh-Hans": {
+    showUsers: "用户数",
     language: "中文",
     currentLanguage: "当前语言",
     inputYourName: "输入您的姓名",
@@ -115,6 +123,7 @@ const Words: { [index: string]: any } = {
     translationUnavailableAtThisTime: "目前无法翻译",
   },
   ja: {
+    showUsers: "ユーザー",
     language: "英語",
     currentLanguage: "現在の言語",
     inputYourName: "あなたの名前を入力してください",
@@ -129,6 +138,7 @@ const Words: { [index: string]: any } = {
     translationUnavailableAtThisTime: "現在、翻訳はご利用いただけません",
   },
   hi: {
+    showUsers: "उपयोगकर्ता",
     language: "हिंदी",
     currentLanguage: "वर्तमान भाषा",
     inputYourName: "इनपुट योर नेम",

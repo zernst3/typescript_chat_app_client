@@ -4,11 +4,13 @@
   align-items: center;
   background: rgb(167, 136, 167);
   border-radius: 25px;
-  height: 95%;
-  min-width: 10%;
-  max-width: 30%;
+  height: 100%;
+  min-width: 75%;
+  max-width: 95%;
   margin-right: 5px;
   margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
   overflow: auto;
 }

@@ -7,7 +7,8 @@ import Messages from "../Messages/Messages";
 import Users from "../Users/Users";
 import Words from "../translation";
 import "./Chat.css";
-import { getEndpoint } from "../../endpoint";
+// Need to get this to work and detect envirements
+// import { getEndpoint } from "../../endpoint";
 const ENDPOINT: string = "https://zernst-typescript-chat-app-s.herokuapp.com/";
 
 const io = require("socket.io-client");
@@ -30,6 +31,7 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   const [messages, setMessages] = useState<Array<MessageInterface>>([]);
   const [message, setMessage] = useState<string>("");
   const [users, setUsers] = useState<Array<string>>([]);
+  const [showUsers, setShowUsers] = useState<Boolean>(false);
 
   useEffect(() => {
     socket = io(ENDPOINT);
@@ -91,16 +93,25 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
 
   return name && chatRoom ? (
     <div id="chatOuterContainer">
-      <Users users={users} language={language} />
       <div id="chatInnerContainer">
-        <InfoBar chatRoom={chatRoom} language={language} />
-        <Messages messages={messages} name={name} />
-        <Input
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
+        <InfoBar
+          chatRoom={chatRoom}
           language={language}
+          setShowUsers={setShowUsers}
+          showUsers={showUsers}
         />
+        {showUsers && <Users users={users} language={language} />}
+        {!showUsers && (
+          <React.Fragment>
+            <Messages messages={messages} name={name} />
+            <Input
+              message={message}
+              setMessage={setMessage}
+              sendMessage={sendMessage}
+              language={language}
+            />
+          </React.Fragment>
+        )}
       </div>
     </div>
   ) : (

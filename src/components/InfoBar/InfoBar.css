@@ -1,13 +1,29 @@
 #infoBar {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #infoBar h1 {
   color: rgb(231, 231, 231);
 }
 
-#infoBar a {
+#infoBar div {
+  display: flex;
+  flex-direction: row;
+}
+
+#infoBar div p {
+  margin: 0;
+}
+
+#infoBar a,
+button {
+  margin: 5px;
   text-decoration: none;
   color: rgb(231, 231, 231);
   font-size: 1.4em;
@@ -18,7 +34,43 @@
   transition: 0.2s; /* Animation */
 }
 
-#infoBar a:hover {
+#infoBar a:hover,
+button:hover {
   cursor: pointer;
   background-color: rgba(19, 0, 37, 0.76);
+}
+
+#infoBar .mobile {
+  display: none;
+}
+
+@media screen and (max-width: 769px) {
+  #infoBar .desktop {
+    display: none;
+  }
+
+  #infoBar .mobile {
+    display: block;
+  }
+
+  #infoBar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #infoBar h1 {
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #infoBar a,
+  button {
+    padding: 2px 5px;
+    font-size: 1.1em;
+  }
+
+  #infoBar div {
+    margin-left: 5px;
+  }
 }
