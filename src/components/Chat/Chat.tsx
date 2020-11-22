@@ -34,9 +34,9 @@ const Chat: React.FC<any> = ({ name, chatRoom, language }) => {
   useEffect(() => {
     socket = io(ENDPOINT, {
       withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd",
-      },
+      // extraHeaders: {
+      //   "my-custom-header": "abcd",
+      // },
     });
 
     socket.on("connect", () => {
