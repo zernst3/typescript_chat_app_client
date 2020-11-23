@@ -19,12 +19,12 @@
   );
   border-radius: 25px;
   height: 95%;
-  min-width: 35%;
+  min-width: 40%;
   max-width: 95%;
   margin: 5px;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1200px) {
   #chatInnerContainer {
     width: 95%;
   }
