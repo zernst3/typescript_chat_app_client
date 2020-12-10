@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Introduction
+
+This is a basic typescript chat application client that uses sockets to communicate with the server. Users can pick rooms with unique names, select their language and chat. All messages received by the client are translated by the server through Microsoft Azure API calls.
+
+## Server Link:
+
+https://github.com/zernst3/typescript_chat_app_server
+
 ## Available Scripts
 
 In the project directory, you can run:
